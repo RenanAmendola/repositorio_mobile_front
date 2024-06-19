@@ -5,21 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
 
 export default function EditUserInfoPage() {
-  const { user, setUser } = useAuth();
-  const [loading, setLoading] = useState(false);
-
-  const [idUsuario, setIdUsuario] = useState('');
-  const [nome, setNome] = useState('');
-  const [sobrenome, setSobrenome] = useState('');
-  const [telefone, setTelefone] = useState('');
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
-  const [tipoUsuario, setTipoUsuario] = useState(''); 
-  const [cpf, setCPF] = useState(''); 
-  const [foto, setFoto] = useState(''); 
-  const [matricula, setMatricula] = useState(''); 
-
-  const navigation = useNavigation();
 
   useEffect(() => {
     if (user) {
@@ -31,9 +16,30 @@ export default function EditUserInfoPage() {
       setTipoUsuario(user.tipo);
       setCPF(user.cpf);
       setMatricula(user.matricula);
+      setFoto(user.foto);
       setSenha(user.senha);
     }
   }, [user]);
+
+  const { user, setUser } = useAuth();
+  const [loading, setLoading] = useState(false);
+
+  const [idUsuario, setIdUsuario] = useState('');
+  const [nome, setNome] = useState('');
+  const [sobrenome, setSobrenome] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [tipoUsuario, setTipoUsuario] = useState(''); 
+  const [cpf_c, setCPF] = useState(''); 
+  const [foto, setFoto] = useState(''); 
+  const [matricula, setMatricula] = useState(''); 
+
+  const navigation = useNavigation();
+
+
+
+
 
   const updateUserInfo = async () => {
     try {
@@ -51,7 +57,7 @@ export default function EditUserInfoPage() {
             telefone : telefone,
             email : email,
             tipo : tipoUsuario,
-            cpf : cpf,
+            cpf : cpf_c,
             foto : foto,
             matricula : matricula,
             senha : senha,
@@ -75,6 +81,12 @@ export default function EditUserInfoPage() {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
+
+    cpfteste = 123456;
+
+
+  console.log(cpf_c)
+  console.log(cpfteste)
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -125,7 +137,7 @@ export default function EditUserInfoPage() {
           <TextInput
             style={styles.input}
             placeholder="CPF"
-            value={cpf}
+            value={cpf_c}
             onChangeText={setCPF}
           />
           <TextInput
@@ -146,6 +158,8 @@ export default function EditUserInfoPage() {
     </ScrollView>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {

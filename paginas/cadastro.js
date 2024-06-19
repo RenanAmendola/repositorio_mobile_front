@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Image, ScrollView, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 
@@ -41,8 +41,9 @@ export default function RegisterPage() {
 
       if (response.ok) {
         console.log(data.message);
+        Alert.alert("Conta criada com sucesso, redirecionando para login!")
         // Navegar para a tela de login após o cadastro
-        navigation.navigate('HomePage');
+        navigation.navigate('LoginPage');
       } else {
         console.error('Erro no cadastro:', data);
       }
